@@ -29,22 +29,23 @@ fn do_one(max: i32, nums: Vec<i32>) -> usize {
 #[test]
 fn testing() {
     assert_eq!(do_one(7, vec![2, 3, 1, 2, 4, 3]), 2);
+    assert_eq!(min_sub_array_len(7, vec![2, 3, 1, 2, 4, 3]), 2);
 }
 
 fn min_sub_array_len(target: i32, nums: Vec<i32>) -> i32 {
     /* 优化版
-  1. 每次循环不重新计算sum值,而是通过累加/累减的方式获得sum值,使得时间复杂度为O(n)
+1. 每次循环不重新计算sum值,而是通过累加/累减的方式获得sum值,使得时间复杂度为O(n)
    */
 
-    let (mut result, mut subLength): (i32, i32) = (i32::MAX, 0);
+    let (mut result, mut sub_length): (i32, i32) = (i32::MAX, 0);
     let (mut sum, mut i) = (0, 0);
 
     for (pos, val) in nums.iter().enumerate() {
         sum += val;
         while sum >= target {
-            subLength = (pos - i + 1) as i32;
-            if result > subLength {
-                result = subLength;
+            sub_length = (pos - i + 1) as i32;
+            if result > sub_length {
+                result = sub_length;
             }
             sum -= nums[i];
             i += 1;

@@ -6,3 +6,5 @@ mod remove_element;
 mod square_element;
 /** 长度最小的子数组 */
 mod min_sub_array;
+/** 螺旋矩阵 */
+mod generate_matrix;
